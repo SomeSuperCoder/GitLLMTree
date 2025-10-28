@@ -14,7 +14,7 @@ type CommitPair struct {
 }
 
 func makeReqURL(cp *CommitPair) string {
-	return fmt.Sprintf("https://github.com/%s/%s/compare/%s...%s", cp.Owner, cp.Repo, cp.BaseCommit, cp.TargetCommit)
+	return fmt.Sprintf("https://api.github.com/repos/%s/%s/compare/%s...%s", cp.Owner, cp.Repo, cp.BaseCommit, cp.TargetCommit)
 }
 
 func RequestDiff(cp *CommitPair, token string) (string, error) {
@@ -27,8 +27,9 @@ func RequestDiff(cp *CommitPair, token string) (string, error) {
 	}
 
 	req.Header.Set("Authorization", "Bearer "+token)
-	req.Header.Set("Accept", "application/vnd.github+json")
+	req.Header.Set("Accept", "application/vnd.github.v3.patch")
 	req.Header.Set("X-GitHub-Api-Version", "2022-11-28")
+
 	resp, err := client.Do(req)
 	if err != nil {
 		return "", err
