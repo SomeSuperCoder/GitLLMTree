@@ -14,7 +14,7 @@ type CommitPair struct {
 }
 
 func makeReqURL(cp *CommitPair) string {
-	return fmt.Sprintf("https://github.com/%s/%s/compare/%s...%s.patch", cp.Owner, cp.Repo, cp.BaseCommit, cp.TargetCommit)
+	return fmt.Sprintf("https://github.com/%s/%s/compare/%s...%s", cp.Owner, cp.Repo, cp.BaseCommit, cp.TargetCommit)
 }
 
 func RequestDiff(cp *CommitPair, token string) (string, error) {
