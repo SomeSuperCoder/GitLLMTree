@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-func DiffSummary(prevSummaries []string, diff string) string {
+func DiffSummary(prevSummaries []string, diff string, teamCase string) string {
 	var prevCheckpoints strings.Builder
 
 	for _, summary := range prevSummaries {
@@ -21,6 +21,10 @@ You need to produce a consise and clearly comprehensible response. It must be ve
 Respond in markdown, use bullet points.
 Do not provide extra context, headers or metadata in your response, as that information will show to the user in the GUI.
 # INPUT
+## This is is the case e.g. the task that the team need to do, the problem they need to solve
+"""
+%s
+"""
 ## This is the summary of all previous checkpoints done by you:
 """
 %s
@@ -28,6 +32,5 @@ Do not provide extra context, headers or metadata in your response, as that info
 ## These are the changes done after the last provided checkpoint
 """
 %s
-"""
-	`, prevCheckpoints.String(), diff)
+"""`, teamCase, prevCheckpoints.String(), diff)
 }
