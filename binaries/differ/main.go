@@ -34,13 +34,13 @@ func main() {
 
 	// Form the LLM prompt
 	prompt := prompts.DiffSummary([]string{}, diff, "Create a Solana-like blochchain")
+	log.Println(prompt)
 
 	// Get the LLM summary
-	resp, err := llm.GetStandardChatCompletion(ctx, client, prompt)
+	stream, err := llm.GetStreamChatCompletion(ctx, client, prompt)
 	if err != nil {
 		log.Panic(err)
 	}
 
-	responseString := llm.ChatCompletionToString(resp)
-	log.Println(responseString)
+	llm.LogChatCompletionStream(stream)
 }
