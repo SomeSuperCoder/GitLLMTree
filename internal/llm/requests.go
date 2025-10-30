@@ -6,7 +6,7 @@ import (
 	"github.com/sashabaranov/go-openai"
 )
 
-func GetStandardChatCompletion(ctx context.Context, client *openai.Client) (openai.ChatCompletionResponse, error) {
+func GetStandardChatCompletion(ctx context.Context, client *openai.Client, prompt string) (openai.ChatCompletionResponse, error) {
 	return client.CreateChatCompletion(
 		ctx,
 		openai.ChatCompletionRequest{
@@ -14,7 +14,7 @@ func GetStandardChatCompletion(ctx context.Context, client *openai.Client) (open
 			Messages: []openai.ChatCompletionMessage{
 				{
 					Role:    openai.ChatMessageRoleUser,
-					Content: "Hello!",
+					Content: prompt,
 				},
 			},
 		},
