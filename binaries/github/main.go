@@ -17,7 +17,7 @@ func main() {
 		TargetCommit: "f53e9eb5ddf45ac43ef83ae6af37af03a720207b",
 	}
 
-	diff, err := internal.RequestDiff(commitPair, appConfig.Token)
+	diff, err := internal.RequestDiff(commitPair, appConfig.GithubToken)
 	if err != nil {
 		log.Panicln(err)
 	}
